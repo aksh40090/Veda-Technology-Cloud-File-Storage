@@ -1,0 +1,15 @@
+IMPORTANT: This corrected version uses ROOT app.py and run.py.
+Delete/replace the OLD project folder completely; do not leave the old app\ package behind.
+
+1. Extract this ZIP.
+2. Open the NEW folder in VS Code.
+3. PowerShell:
+   python -m pip install -r requirements.txt
+   python run.py
+4. Open http://127.0.0.1:5000
+5. Test upload/download/delete.
+6. Run pytest -q
+7. GitHub commands are in README.md.
+
+Default STORAGE_MODE=local, so AWS/R2 credentials are NOT needed for the demo.
+Never commit real cloud credentials.

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Veda Technology | Cloud File Storage</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="brand">
+        <span>VEDA</span> TECHNOLOGY
+    </div>
+
+    <h1>Cloud File Storage & Document Management</h1>
+
+    <p>
+        Upload, organize, manage and download your cloud files securely.
+    </p>
+
+</header>
+
+
+<main class="container">
+
+    <!-- Upload Section -->
+    <section class="card">
+
+        <h2>📤 Upload File</h2>
+
+        <form action="/upload"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <label for="file">Select File</label>
+
+            <input
+                type="file"
+                id="file"
+                name="file"
+                accept=".pdf,.jpg,.jpeg,.png"
+                required
+            >
+
+            <label for="category">Category</label>
+
+            <select id="category"
+                    name="category"
+                    required>
+
+                <option value="">Select Category</option>
+                <option value="documents">Documents</option>
+                <option value="certificates">Certificates</option>
+                <option value="images">Images</option>
+                <option value="reports">Reports</option>
+
+            </select>
+
+            <button type="submit">
+                Upload File
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Files Section -->
+    <section class="card">
+
+        <h2>📁 Stored Files</h2>
+
+        {% if files %}
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>File Name</th>
+                        <th>Category</th>
+                        <th>Size</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for file in files %}
+
+                    <tr>
+
+                        <td>
+                            {{ file.filename }}
+                        </td>
+
+                        <td>
+                            {{ file.category }}
+                        </td>
+
+                        <td>
+                            {{ file.size }}
+                        </td>
+
+                        <td>
+                            {{ file.content_type }}
+                        </td>
+
+                        <td>
+
+                            <a
+                                class="download-btn"
+                                href="/download/{{ file.filename }}"
+                            >
+                                Download
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty">
+
+            <p>📂 No files uploaded yet.</p>
+
+            <p>
+                Upload a PDF or image using the form above.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- Project Features -->
+    <section class="features">
+
+        <div class="feature">
+            <h3>☁️ Cloud Storage</h3>
+            <p>Object-storage based file management.</p>
+        </div>
+
+        <div class="feature">
+            <h3>🔒 Access Control</h3>
+            <p>Basic access control for stored resources.</p>
+        </div>
+
+        <div class="feature">
+            <h3>📋 Metadata</h3>
+            <p>File name, type, size and category are recorded.</p>
+        </div>
+
+        <div class="feature">
+            <h3>⬇️ Download</h3>
+            <p>Download previously uploaded resources.</p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Veda Technology Cloud File Storage & Document Management System
+    </p>
+
+    <p>
+        Cloud Computing Internship Project • 2026
+    </p>
+
+</footer>
+
+</body>
+</html>
